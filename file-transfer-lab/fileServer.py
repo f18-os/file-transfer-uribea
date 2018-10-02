@@ -11,7 +11,7 @@ switchesVarDefaults = (
     (('-?', '--usage'), "usage", False), # boolean (set if present)
     )
 
-progname = "echoserver"
+progname = "fileserver"
 paramMap = params.parseParams(switchesVarDefaults)
 
 debug, listenPort = paramMap['debug'], paramMap['listenPort']
@@ -38,5 +38,20 @@ while True:
             if not payload:
                 if debug: print("child exiting")
                 sys.exit(0)
+            # payload = payload.decode()
+            print(payload)
+            payload = payload.decode()
+            if payload.startswith('./'):
+                print(payload)
+                #payload = payload.decode()
+                fileDir = os.path.dirname(os.path.realpath('__file__'))
+                filename = os.path.join(fileDir, 'server/'+payload)
+                file = open(filename, 'w')
+            elif payload.startswith('~'):
+               file.close()
+            else:
+                print(payload)
+                file.write(payload)
+            payload = payload.encode()
             payload += b"!"             # make emphatic!
             framedSend(sock, payload, debug)

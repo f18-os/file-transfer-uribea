@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
+
 import sys
 import traceback
 from select import *
 from socket import *
 import time
 import random
-
+sys.path.append('../lib')      # for params
 import re
 
-sys.path.append("../lib")       # for params
 import params
 
 switchesVarDefaults = (
