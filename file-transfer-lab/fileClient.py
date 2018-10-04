@@ -61,15 +61,14 @@ if (len(para) == 2 and para[0]=='put'):
     try:#check if put and filename
         print(para[1])
         file = open(para[1], 'r')
-        print('hy')
-        #print('hy2')
+
     except:
         print('file not found')
         exit(0)
 
     if True:
         filenam = './' + para[1]#send filename
-        print(filenam)
+        #print(filenam)
         framedSend(s, filenam.encode(), debug)
         print("received:", framedReceive(s, debug))
 
@@ -77,22 +76,15 @@ if (len(para) == 2 and para[0]=='put'):
 
         data = file.read(100)#.encode()
         data = data.strip()
-#        da = data.enc
-        print(len(data))
-        print(data)
+
         if not data:# end of file
             framedSend(s, '~'.encode(), debug)
             print("received:", framedReceive(s, debug))
             break
-        print(data.encode())
-        framedSend(s, data.encode(), debug)
+        #print(data.encode())
+        framedSend(s, data.encode(), debug)#send file by 100 byte increments
         print("received:", framedReceive(s, debug))
 
-    #print('file found')
-    #print("sending hello world")
-    #framedSend(s, b"hello world", debug)
-    #print("sending hello world")
-    #framedSend(s, b"hello world", debug)
-        #print("received:", framedReceive(s, debug))
+
 else:
     print('no command or missing parameter')

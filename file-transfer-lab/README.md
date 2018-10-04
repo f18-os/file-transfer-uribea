@@ -19,4 +19,3 @@ This program consist of two programs
     * file already on server
         * overwrites file on server
 
-files with new lines don't work
