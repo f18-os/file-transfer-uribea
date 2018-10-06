@@ -1,0 +1,1 @@
+c1. Fernando explained how to write to different directories
